@@ -1,0 +1,41 @@
+<?xml version="1.0" encoding="utf-8"?>
+<edmx:Edmx Version="1.0" xmlns:edmx="http://schemas.microsoft.com/ado/2007/06/edmx" xmlns:m="http://schemas.microsoft.com/ado/2007/08/dataservices/metadata" xmlns:sap="http://www.sap.com/Protocols/SAPData">
+    <edmx:DataServices m:DataServiceVersion="2.0">
+        <Schema Namespace="ZEWM_COMMONS_SRV" xml:lang="tr" sap:schema-version="1" xmlns="http://schemas.microsoft.com/ado/2008/09/edm">
+            <Annotation Term="Core.SchemaVersion" String="1.0.0" xmlns="http://docs.oasis-open.org/odata/ns/edm"/>
+            <EntityType Name="LgplaSH" sap:content-version="1">
+                <Key>
+                    <PropertyRef Name="Lgber"/>
+                    <PropertyRef Name="Lptyp"/>
+                </Key>
+                <Property Name="Lgtyp" Type="Edm.String" Nullable="false" MaxLength="4" sap:unicode="false" sap:label="Depo tipi" sap:creatable="false" sap:updatable="false" sap:sortable="false" sap:filterable="false"/>
+                <Property Name="Lgber" Type="Edm.String" Nullable="false" MaxLength="4" sap:unicode="false" sap:label="Depo alanı" sap:creatable="false" sap:updatable="false" sap:sortable="false" sap:filterable="false"/>
+                <Property Name="Lptyp" Type="Edm.String" Nullable="false" MaxLength="4" sap:unicode="false" sap:label="Depo adr.tipi" sap:creatable="false" sap:updatable="false" sap:sortable="false" sap:filterable="false"/>
+                <Property Name="Lgpla" Type="Edm.String" Nullable="false" MaxLength="18" sap:unicode="false" sap:label="Depo adresi" sap:creatable="false" sap:updatable="false" sap:sortable="false" sap:filterable="false"/>
+                <Property Name="Kzler" Type="Edm.Boolean" Nullable="false" sap:unicode="false" sap:label="Boş depo adresi" sap:creatable="false" sap:updatable="false" sap:sortable="false" sap:filterable="false"/>
+            </EntityType>
+            <EntityType Name="Address" sap:content-version="1">
+                <Key>
+                    <PropertyRef Name="EvLgber"/>
+                    <PropertyRef Name="EvLgtyp"/>
+                </Key>
+                <Property Name="Type" Type="Edm.String" Nullable="false" MaxLength="1" sap:unicode="false" sap:label="İleti tipi" sap:creatable="false" sap:updatable="false" sap:sortable="false" sap:filterable="false"/>
+                <Property Name="Id" Type="Edm.String" Nullable="false" MaxLength="20" sap:unicode="false" sap:label="İleti sınıfı" sap:creatable="false" sap:updatable="false" sap:sortable="false" sap:filterable="false"/>
+                <Property Name="Number" Type="Edm.String" Nullable="false" MaxLength="3" sap:unicode="false" sap:label="İleti numarası" sap:creatable="false" sap:updatable="false" sap:sortable="false" sap:filterable="false"/>
+                <Property Name="Message" Type="Edm.String" Nullable="false" MaxLength="220" sap:unicode="false" sap:label="İleti metni" sap:creatable="false" sap:updatable="false" sap:sortable="false" sap:filterable="false"/>
+                <Property Name="EvLgber" Type="Edm.String" Nullable="false" MaxLength="4" sap:unicode="false" sap:label="Depo alanı" sap:creatable="false" sap:updatable="false" sap:sortable="false" sap:filterable="false"/>
+                <Property Name="EvLgtyp" Type="Edm.String" Nullable="false" MaxLength="4" sap:unicode="false" sap:label="Depo tipi" sap:creatable="false" sap:updatable="false" sap:sortable="false" sap:filterable="false"/>
+            </EntityType>
+            <EntityContainer Name="ZEWM_COMMONS_SRV_Entities" m:IsDefaultEntityContainer="true" sap:supported-formats="atom json xlsx">
+                <EntitySet Name="LgplaSHSet" EntityType="ZEWM_COMMONS_SRV.LgplaSH" sap:creatable="false" sap:updatable="false" sap:deletable="false" sap:pageable="false" sap:content-version="1"/>
+                <EntitySet Name="AddressSet" EntityType="ZEWM_COMMONS_SRV.Address" sap:creatable="false" sap:updatable="false" sap:deletable="false" sap:pageable="false" sap:content-version="1"/>
+                <FunctionImport Name="AddressControl" ReturnType="ZEWM_COMMONS_SRV.Address" EntitySet="AddressSet" m:HttpMethod="GET">
+                    <Parameter Name="Lgpla" Type="Edm.String" Mode="In"/>
+                    <Parameter Name="Lgnum" Type="Edm.String" Mode="In"/>
+                </FunctionImport>
+            </EntityContainer>
+            <atom:link rel="self" href="https://vherjds4ap01.sap.erenenerji.com.tr:44300/sap/opu/odata/sap/ZEWM_COMMONS_SRV/$metadata" xmlns:atom="http://www.w3.org/2005/Atom"/>
+            <atom:link rel="latest-version" href="https://vherjds4ap01.sap.erenenerji.com.tr:44300/sap/opu/odata/sap/ZEWM_COMMONS_SRV/$metadata" xmlns:atom="http://www.w3.org/2005/Atom"/>
+        </Schema>
+    </edmx:DataServices>
+</edmx:Edmx>

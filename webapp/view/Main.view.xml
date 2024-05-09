@@ -1,0 +1,20 @@
+<mvc:View controllerName="com.eren.tubeinout.controller.Main" xmlns:core="sap.ui.core" xmlns:mvc="sap.ui.core.mvc" xmlns="sap.uxap"
+	xmlns:m="sap.m" xmlns:layout="sap.ui.layout">
+	<ObjectPageLayout showFooter="true" showHeaderContent="true" toggleHeaderOnTitleClick="true">
+		<headerContent>
+			<core:Fragment type="XML" fragmentName="com.eren.tubeinout.fragment.main.Header"/>
+		</headerContent>
+		<sections>
+			<ObjectPageSection showTitle="false">
+				<subSections>
+					<ObjectPageSubSection>
+						<core:Fragment type="XML" fragmentName="com.eren.tubeinout.fragment.main.Content"/>
+					</ObjectPageSubSection>
+				</subSections>
+			</ObjectPageSection>
+		</sections>
+		<footer>
+			<core:Fragment type="XML" fragmentName="com.eren.tubeinout.fragment.main.Footer"/>
+		</footer>
+	</ObjectPageLayout>
+</mvc:View>

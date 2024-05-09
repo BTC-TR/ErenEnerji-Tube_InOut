@@ -1,0 +1,25 @@
+# yaml-language-server: $schema=https://sap.github.io/ui5-tooling/schema/ui5.yaml.json
+
+specVersion: "3.1"
+metadata:
+  name: com.eren.tubeinout
+type: application
+builder:
+  resources:
+    excludes:
+      - /test/**
+      - /localService/**
+  customTasks:
+    - name: deploy-to-abap
+      afterTask: generateCachebusterInfo
+      configuration:
+        target:
+          destination: ErenEnerji
+          url: http://192.168.212.33:8000
+        app:
+          name: ZEWM_TUBE_INOUT
+          description: EWM Tube InOut
+          package: ZFIORI_EWM
+          transport: DS4K900242
+        exclude:
+          - /test/

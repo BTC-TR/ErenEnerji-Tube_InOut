@@ -1,0 +1,36 @@
+<core:FragmentDefinition xmlns="sap.m" xmlns:core="sap.ui.core" xmlns:ui="sap.ui.table">
+	<Table mode="MultiSelect" id="idTable" width="auto" items="{/MaterialsSet}" updateFinished="onListUpdateFinished"
+		class="sapUiResponsiveMargin">
+		<headerToolbar>
+			<Toolbar id="addItemToolbar">
+				<ToolbarSpacer id="_IDGenToolbarSpacer1"/>
+				<Button id="idBtnDelete" text="{i18n>Delete}" press="onPressDeleteItem" icon="sap-icon://delete" iconFirst="true" tooltip="{i18n>Delete}"
+					visible="true"/>
+			</Toolbar>
+		</headerToolbar>
+		<columns>
+			<Column id="_IDGenColumn1" width="auto" minScreenWidth="Phone" demandPopin="false">
+				<Text id="_IDGenText1" text="{i18n>Lgpla}"/>
+			</Column>
+			<Column id="_IDGenColumn2" width="auto" minScreenWidth="Tablet" demandPopin="true">
+				<Text id="_IDGenText2" text="{i18n>Matnr}"/>
+			</Column>
+			<Column id="_IDGenColumn3" minScreenWidth="Tablet" demandPopin="true">
+				<Text id="_IDGenText3" text="{i18n>Maktx}"/>
+			</Column>
+			<Column id="_IDGenColumn4" minScreenWidth="Tablet" demandPopin="true">
+				<Text id="_IDGenText4" text="{i18n>Charg}"/>
+			</Column>
+		</columns>
+		<items>
+			<ColumnListItem id="_IDGenColumnListItem1" type="Inactive" press="onPressList">
+				<cells>
+					<ObjectNumber id="_IDGenObjectNumber1" state="Warning" number="{Lgpla}"/>
+					<ObjectNumber id="_IDGenObjectNumber2" number="{Matnr}"/>
+					<ObjectNumber id="_IDGenObjectNumber3" number="{Maktx}"/>
+					<ObjectNumber id="_IDGenObjectNumber4" number="{Charg}"/>
+				</cells>
+			</ColumnListItem>
+		</items>
+	</Table>
+</core:FragmentDefinition>

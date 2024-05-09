@@ -1,0 +1,7 @@
+<core:FragmentDefinition xmlns="sap.m" xmlns:core="sap.ui.core" xmlns:mvc="sap.ui.core.mvc">
+	<OverflowToolbar id="_IDGenOverflowToolbar1">
+    	<Button id="_IDGenButton1" type="Reject" text="{i18n>Clear}" icon="sap-icon://clear-all" press="onClear" enabled="true"/>
+		<ToolbarSpacer id="_IDGenToolbarSpacer5"/>
+		<Button id="_IDGenButton2" type="Accept" text="{i18n>Save}" icon="sap-icon://save" press="onSave" enabled="true"/>
+	</OverflowToolbar>
+</core:FragmentDefinition>
