@@ -1,32 +1,103 @@
-<core:FragmentDefinition xmlns="sap.m" xmlns:core="sap.ui.core" xmlns:smartForm="sap.ui.comp.smartform" xmlns:f="sap.ui.layout.form"
-	xmlns:smartField="sap.ui.comp.smartfield" xmlns:l="sap.ui.layout">
-	<l:Grid id="_IDGenGrid1" defaultSpan="XL6 L6 M6 S12">
-		<f:SimpleForm editable="true" id="idHeaderSimpleForm" layout="ResponsiveGridLayout" labelSpanXL="4" labelSpanL="4" labelSpanM="4"
-			labelSpanS="4" emptySpanXL="0" emptySpanL="0" emptySpanM="0" emptySpanS="0" columnsXL="2" columnsL="2" columnsM="1"
-			singleContainerFullSize="false">
-            <Label width="auto" id="_IDGenLabel3" text="{i18n>InOut}" required="false"/>
-			<Switch change="onChangeSwitchInOut" id="idSwitchInOut" state="true" customTextOn="{i18n>In}" customTextOff="{i18n>Out}">
+<core:FragmentDefinition
+	xmlns="sap.m"
+	xmlns:core="sap.ui.core"
+	xmlns:smartForm="sap.ui.comp.smartform"
+	xmlns:f="sap.ui.layout.form"
+	xmlns:smartField="sap.ui.comp.smartfield"
+	xmlns:l="sap.ui.layout"
+>
+	<!-- <l:Grid
+		id="_IDGenGrid1"
+		defaultSpan="XL6 L6 M6 S12"
+	> -->
+	  <f:SimpleForm editable="true" id="idHeaderSimpleForm" layout="ResponsiveGridLayout" labelSpanXL="4" labelSpanM="4" labelSpanS="12" emptySpanXL="0" columnsXL="1" singleContainerFullSize="false">
+  
+			<Label
+				width="auto"
+				id="_IDGenLabel3"
+				text="{i18n>InOut}"
+				required="false"
+			/>
+			<Switch
+				change="onChangeSwitchInOut"
+				id="idSwitchInOut"
+				state="true"
+				customTextOn="{i18n>In}"
+				customTextOff="{i18n>Out}"
+			>
 				<layoutData>
-					<FlexItemData id="_IDGenFlexItemData1" growFactor="1"/>
+					<FlexItemData
+						id="_IDGenFlexItemData1"
+						growFactor="1"
+					/>
 				</layoutData>
 			</Switch>
-			<Label width="auto" id="_IDGenLabel4" text="{i18n>Lgpla}" required="false"/>
-			<Input id="idLgpla" value="{viewModel>/Lgpla}" submit="onPressLgpla" valueHelpRequest="handleValueHelpLgpla"  showValueHelp="true" ></Input>
-			<Label width="auto" id="_IDGenLabel5" text="{i18n>Matnr}"/>
-			<Input id="idMatnr" value="{viewModel>/Matnr}"  submit="onPressMatnr" valueHelpRequest="handleValueHelpMatnr"  showValueHelp="true">
+			<Label
+				width="auto"
+				id="_IDGenLabel4"
+				text="{i18n>Lgpla}"
+				required="false"
+			/>
+			<Input
+				id="idLgpla"
+				value="{viewModel>/Lgpla}"
+				submit="onPressLgpla"
+				valueHelpRequest="handleValueHelpLgpla"
+				showValueHelp="true"
+			>
+				<layoutData>
+					<l:GridData
+						span="XL8 L8 M8 S12"
+					/>
+				</layoutData>
+			</Input>
+			<Label
+				width="auto"
+				id="_IDGenLabel5"
+				text="{i18n>Matnr}"
+			/>
+			<Input
+				id="idMatnr"
+				value="{viewModel>/Matnr}"
+				submit="onPressMatnr"
+				valueHelpRequest="handleValueHelpMatnr"
+				showValueHelp="true"
+			>
 				<layoutData>
 					<l:GridData
 						id="_IDGenGridData10"
-						span="XL8 L8 M8 S8"
+						span="XL8 L8 M8 S12"
 					/>
-				</layoutData></Input>
-			<Label width="auto" id="_IDGenLabel6"  text="{i18n>Maktx}"/>
-			<Text id="idMaktx" text="{viewModel>/Maktx}" />
-            <Label width="auto" id="_IDGenLabel1" text="{i18n>Barcode}"/>
-			<Input id="idBarcode" value="{viewModel>/Barcode}"  submit="onPressBarcode"></Input>
-			<Label width="auto" id="_IDGenLabel2" text="{i18n>Charg}"/>
-			<Text id="idCharg" text="{viewModel>/Charg}"  ></Text>
-			
+				</layoutData>
+			</Input>
+			<Label
+				width="auto"
+				id="_IDGenLabel6"
+				text="{i18n>Maktx}"
+			/>
+			<Text
+				id="idMaktx"
+				text="{viewModel>/Maktx}"
+			/>
+			<Label
+				width="auto"
+				id="_IDGenLabel1"
+				text="{i18n>Barcode}"
+			/>
+			<Input
+				id="idBarcode"
+				value="{viewModel>/Barcode}"
+				submit="onPressBarcode"
+			/>
+			<Label
+				width="auto"
+				id="_IDGenLabel2"
+				text="{i18n>Charg}"
+			/>
+			<Text
+				id="idCharg"
+				text="{viewModel>/Charg}"
+			/>
 		</f:SimpleForm>
-	</l:Grid>
+	<!-- </l:Grid> -->
 </core:FragmentDefinition>
