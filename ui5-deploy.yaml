@@ -20,6 +20,6 @@ builder:
           name: ZEWM_TUBE_INOUT
           description: EWM Tube InOut
           package: ZFIORI_EWM
-          transport: DS4K900242
+          transport: DS4K900446
         exclude:
           - /test/
