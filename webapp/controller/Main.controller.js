@@ -132,6 +132,8 @@ sap.ui.define([
                 let sDurum;
                 sDurum = (this.getView().byId("idSwitchInOut").getState() === true) ? (sDurum = "G") : (sDurum = "C");
                 this._getData(sDurum);
+                this.onClear(true);
+                
             },
             //Lgpla Search Help//
 
@@ -277,19 +279,27 @@ sap.ui.define([
                     .then((oData) => {
                         this._getMaterialList();
                         this.getView().getModel().refresh(true);
-                        this.onClear();
+                        this.onClear(false);
                     })
                     .catch(() => { })
                     .finally((oResponse) => {
                     });
             },
-            onClear: async function () {
+            onClear: async function (isBool) {
+
+     
                 let oViewModel = this.getView().getModel("viewModel");
                 sap.ui.getCore().getMessageManager().removeAllMessages();
-                //oViewModel.setProperty("/Lgpla", "");
-                //oViewModel.setProperty("/Matnr", "");
+
+                       if (isBool === true) {
+                 oViewModel.setProperty("/Lgpla", "");
+                 oViewModel.setProperty("/Matnr", "");
+                 oViewModel.setProperty("/Maktx", "");
+            }
+                
+             
                 oViewModel.setProperty("/Barcode", "");
-                //oViewModel.setProperty("/Maktx", "");
+               
                 oViewModel.setProperty("/Charg", "");
                 oViewModel.setProperty("/Charg", "");
                 jQuery.sap.delayedCall(500, this, function () {
@@ -371,7 +381,7 @@ sap.ui.define([
                     oModel.setDefaultCountMode(sap.ui.model.odata.CountMode.Inline);
                     this._onCallFunction(sEntity, sMethod, oModel, oURLParameters)
                         .then((oData) => {
-                            this.onClear();
+                            this.onClear(false);
                             if (oData.Type === "E") {
                                 MessageBox.error(oData.Message);
                             }
@@ -454,9 +464,9 @@ sap.ui.define([
                 oViewModel.setProperty("/DeleteEnabled", true);
                 this.getView().getModel().refresh(true);
             },
-            _getData: function (bStatus) {
+            _getData: function (sStatus) {
                 const aFilters = [
-                    new Filter("Durum", FilterOperator.Contains, bStatus)
+                    new Filter("Durum", FilterOperator.Contains, sStatus)
                 ];
                 this.byId("idTable").getBinding("items").filter(aFilters);
             },
