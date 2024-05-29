@@ -90,8 +90,15 @@ sap.ui.define([
                     .finally(fnFinally);
             },
             onPressBarcode: async function (oEvent) {
+
+                
                 let oViewModel = this.getView().getModel("viewModel"),
                     sCharg = this.getView().byId("idBarcode").getValue();
+
+                if(sCharg.trim().length === 0){
+                    return;
+                }
+
                 sCharg = sCharg.substr(sCharg.length - 10);
                 let sDurum;
                 oViewModel.setProperty("/Charg", sCharg),
@@ -279,14 +286,14 @@ sap.ui.define([
             onClear: async function () {
                 let oViewModel = this.getView().getModel("viewModel");
                 sap.ui.getCore().getMessageManager().removeAllMessages();
-                oViewModel.setProperty("/Lgpla", "");
-                oViewModel.setProperty("/Matnr", "");
+                //oViewModel.setProperty("/Lgpla", "");
+                //oViewModel.setProperty("/Matnr", "");
                 oViewModel.setProperty("/Barcode", "");
-                oViewModel.setProperty("/Maktx", "");
+                //oViewModel.setProperty("/Maktx", "");
                 oViewModel.setProperty("/Charg", "");
                 oViewModel.setProperty("/Charg", "");
                 jQuery.sap.delayedCall(500, this, function () {
-                    this.getView().byId("idLgpla").focus();
+                    this.getView().byId("idBarcode").focus();
                 });
 
             },
@@ -364,6 +371,7 @@ sap.ui.define([
                     oModel.setDefaultCountMode(sap.ui.model.odata.CountMode.Inline);
                     this._onCallFunction(sEntity, sMethod, oModel, oURLParameters)
                         .then((oData) => {
+                            this.onClear();
                             if (oData.Type === "E") {
                                 MessageBox.error(oData.Message);
                             }
