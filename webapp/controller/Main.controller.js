@@ -38,6 +38,7 @@ sap.ui.define([
             onPressLgpla: async function () {
                 let sLgpla = this.getView().getModel("viewModel").getProperty("/Lgpla"),
                     sLgnum = "ER01",
+                    that=this,
                     oViewModel = this.getView().getModel("viewModel"),
                     sEntity = "/AddressControl",
                     oModel = this.getView().getModel("commonService"),
@@ -54,6 +55,9 @@ sap.ui.define([
                         } else {
                             oViewModel.setProperty("/EvLgber", oData.EvLgber);
                             oViewModel.setProperty("/EvLgtyp", oData.EvLgtyp);
+                            jQuery.sap.delayedCall(100, that, function () {
+                                that.getView().byId("idMatnr").focus();
+                            });
                         }
 
 
@@ -70,6 +74,9 @@ sap.ui.define([
                         sap.ui.core.BusyIndicator.hide();
                         if (oData.EvMaktx) {
                             oViewModel.setProperty("/Maktx", oData.EvMaktx);
+                            jQuery.sap.delayedCall(100, this, function () {
+                                this.getView().byId("idBarcode").focus();
+                            });
                         } else {
                             oViewModel.setProperty("/Matnr", "");
                             oViewModel.setProperty("/Maktx", "");
@@ -177,6 +184,9 @@ sap.ui.define([
                 let oSelectedItem = oEvent.getParameter("selectedItem");
                 if (oSelectedItem) {
                     oViewModel.setProperty("/Lgpla", oSelectedItem.getTitle());
+                    jQuery.sap.delayedCall(100, this, function () {
+                        this.getView().byId("idMatnr").focus();
+                    });
                 }
                 oEvent.getSource().getBinding("items").filter([]);
             },
@@ -215,6 +225,9 @@ sap.ui.define([
                 if (oSelectedItem) {
                     oViewModel.setProperty("/Matnr", oSelectedItem.getTitle());
                     oViewModel.setProperty("/Maktx", oSelectedItem.getDescription());
+                    jQuery.sap.delayedCall(100, this, function () {
+                        this.getView().byId("idBarcode").focus();
+                    });
                 }
                 oEvent.getSource().getBinding("items").filter([]);
             },
@@ -469,6 +482,9 @@ sap.ui.define([
                     new Filter("Durum", FilterOperator.Contains, sStatus)
                 ];
                 this.byId("idTable").getBinding("items").filter(aFilters);
+                jQuery.sap.delayedCall(500, this, function () {
+                    this.getView().byId("idLgpla").focus();
+                });
             },
             _onCallFunction: function (sEntity, sMethod, oModel, oURLParameters) {
                 return new Promise((fnResolve, fnReject) => {
