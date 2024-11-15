@@ -139,7 +139,7 @@ sap.ui.define([
                 let sDurum;
                 sDurum = (this.getView().byId("idSwitchInOut").getState() === true) ? (sDurum = "G") : (sDurum = "C");
                 this._getData(sDurum);
-                this.onClear(true);
+                this.onClear(true, "Switch");
                 
             },
             //Lgpla Search Help//
@@ -298,7 +298,7 @@ sap.ui.define([
                     .finally((oResponse) => {
                     });
             },
-            onClear: async function (isBool) {
+            onClear: async function (isBool, where) {
 
      
                 let oViewModel = this.getView().getModel("viewModel");
@@ -315,9 +315,18 @@ sap.ui.define([
                
                 oViewModel.setProperty("/Charg", "");
                 oViewModel.setProperty("/Charg", "");
-                jQuery.sap.delayedCall(500, this, function () {
+
+                if(where === "Switch"){
+                     jQuery.sap.delayedCall(500, this, function () {
+                    this.getView().byId("idLgpla").focus();
+                });
+                }else{
+                     jQuery.sap.delayedCall(500, this, function () {
                     this.getView().byId("idBarcode").focus();
                 });
+                }
+                
+               
 
             },
 
