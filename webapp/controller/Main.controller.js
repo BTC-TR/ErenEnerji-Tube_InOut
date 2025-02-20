@@ -106,7 +106,10 @@ sap.ui.define([
                     return;
                 }
 
+                sCharg = sCharg.toString().padStart(20, "0");;
                 sCharg = sCharg.substr(sCharg.length - 10);
+                sCharg = parseInt(sCharg).toString();
+ 
                 let sDurum;
                 oViewModel.setProperty("/Charg", sCharg),
                     sDurum = (this.getView().byId("idSwitchInOut").getState() === true) ? (sDurum = "G") : (sDurum = "C");

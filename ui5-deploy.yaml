@@ -16,10 +16,11 @@ builder:
         target:
           destination: ErenEnerji
           url: http://192.168.212.33:8000
+          client: '100'
         app:
           name: ZEWM_TUBE_INOUT
           description: EWM Tube InOut
           package: ZFIORI_EWM
-          transport: DS4K902568
+          transport: DS4K904119
         exclude:
           - /test/
