@@ -108,7 +108,7 @@ sap.ui.define([
 
                 sCharg = sCharg.toString().padStart(20, "0");;
                 sCharg = sCharg.substr(sCharg.length - 10);
-                sCharg = parseInt(sCharg).toString();
+                sCharg = sCharg.replace(/^0+/, '');
  
                 let sDurum;
                 oViewModel.setProperty("/Charg", sCharg),
