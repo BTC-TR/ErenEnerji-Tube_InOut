@@ -38,7 +38,7 @@ sap.ui.define([
             onPressLgpla: async function () {
                 let sLgpla = this.getView().getModel("viewModel").getProperty("/Lgpla"),
                     sLgnum = "ER01",
-                    that=this,
+                    that = this,
                     oViewModel = this.getView().getModel("viewModel"),
                     sEntity = "/AddressControl",
                     oModel = this.getView().getModel("commonService"),
@@ -98,18 +98,18 @@ sap.ui.define([
             },
             onPressBarcode: async function (oEvent) {
 
-                
+
                 let oViewModel = this.getView().getModel("viewModel"),
                     sCharg = this.getView().byId("idBarcode").getValue();
 
-                if(sCharg.trim().length === 0){
+                if (sCharg.trim().length === 0) {
                     return;
                 }
 
                 sCharg = sCharg.toString().padStart(20, "0");;
                 sCharg = sCharg.substr(sCharg.length - 10);
                 sCharg = sCharg.replace(/^0+/, '');
- 
+
                 let sDurum;
                 oViewModel.setProperty("/Charg", sCharg),
                     sDurum = (this.getView().byId("idSwitchInOut").getState() === true) ? (sDurum = "G") : (sDurum = "C");
@@ -143,7 +143,7 @@ sap.ui.define([
                 sDurum = (this.getView().byId("idSwitchInOut").getState() === true) ? (sDurum = "G") : (sDurum = "C");
                 this._getData(sDurum);
                 this.onClear(true, "Switch");
-                
+
             },
             //Lgpla Search Help//
 
@@ -286,13 +286,20 @@ sap.ui.define([
 
                     sEntity = "/DataSave",
                     oModel = this.getView().getModel(),
-                    sMethod = "POST",
+                    sMethod = "GET",
                     oURLParameters = {
                         Durum: sDurum
                     };
                 oModel.setDefaultCountMode(sap.ui.model.odata.CountMode.Inline);
                 this._onCallFunction(sEntity, sMethod, oModel, oURLParameters)
                     .then((oData) => {
+                        if (oData.results && oData.results[0].Type === 'E') {
+                            return MessageBox.error(oData.results[0].Message);
+                        }
+                        else {
+                            MessageBox.success(oData.results[0].Message);
+                        }
+
                         this._getMaterialList();
                         this.getView().getModel().refresh(true);
                         this.onClear(false);
@@ -303,33 +310,33 @@ sap.ui.define([
             },
             onClear: async function (isBool, where) {
 
-     
+
                 let oViewModel = this.getView().getModel("viewModel");
                 sap.ui.getCore().getMessageManager().removeAllMessages();
 
-                       if (isBool === true) {
-                 oViewModel.setProperty("/Lgpla", "");
-                 oViewModel.setProperty("/Matnr", "");
-                 oViewModel.setProperty("/Maktx", "");
-            }
-                
-             
+                if (isBool === true) {
+                    oViewModel.setProperty("/Lgpla", "");
+                    oViewModel.setProperty("/Matnr", "");
+                    oViewModel.setProperty("/Maktx", "");
+                }
+
+
                 oViewModel.setProperty("/Barcode", "");
-               
+
                 oViewModel.setProperty("/Charg", "");
                 oViewModel.setProperty("/Charg", "");
 
-                if(where === "Switch"){
-                     jQuery.sap.delayedCall(500, this, function () {
-                    this.getView().byId("idLgpla").focus();
-                });
-                }else{
-                     jQuery.sap.delayedCall(500, this, function () {
-                    this.getView().byId("idBarcode").focus();
-                });
+                if (where === "Switch") {
+                    jQuery.sap.delayedCall(500, this, function () {
+                        this.getView().byId("idLgpla").focus();
+                    });
+                } else {
+                    jQuery.sap.delayedCall(500, this, function () {
+                        this.getView().byId("idBarcode").focus();
+                    });
                 }
-                
-               
+
+
 
             },
 
